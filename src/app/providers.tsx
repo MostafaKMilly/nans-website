@@ -10,6 +10,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from "notistack";
 import { useRouter } from "next/navigation";
+import { LocalizationProvider } from "./localizationProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,9 +64,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <ThemeProvider theme={createTheme(theme)}>
       <CssBaseline />
       <QueryClientProvider client={queryClient}>
-        <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-          <AuthContext.Provider value={value}>
-            {
+        <LocalizationProvider>
+          <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
+            <AuthContext.Provider value={value}>
               <main
                 style={{
                   display: "flex",
@@ -75,9 +76,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
               >
                 {children}
               </main>
-            }
-          </AuthContext.Provider>
-        </SnackbarProvider>
+            </AuthContext.Provider>
+          </SnackbarProvider>
+        </LocalizationProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

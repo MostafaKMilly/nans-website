@@ -1,27 +1,12 @@
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import Image from "next/image";
-import { useQueryClient } from "@tanstack/react-query";
+import { useTranslations } from "../_hooks/useTranslations";
+
 export const LanguageSelector = () => {
-  const [language, setLanguage] = useState("en");
-  const router = useRouter();
+  const { handleChangeLanguage, language } = useTranslations();
   const anchorEl = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
-  const client = useQueryClient();
-
-  useEffect(() => {
-    if (localStorage.getItem("language")) {
-      setLanguage(localStorage.getItem("language")!);
-    }
-  }, []);
-
-  const changeLanguage = (language: string) => {
-    setLanguage(language);
-    localStorage?.setItem("language", language);
-    router.refresh();
-    client.refetchQueries();
-  };
 
   const handleMenuHover = () => {
     setOpen(true);
@@ -85,8 +70,8 @@ export const LanguageSelector = () => {
           },
         }}
       >
-        <MenuItem onClick={() => changeLanguage("en")}>EN</MenuItem>
-        <MenuItem onClick={() => changeLanguage("ar")}>AR</MenuItem>
+        <MenuItem onClick={() => handleChangeLanguage("en")}>EN</MenuItem>
+        <MenuItem onClick={() => handleChangeLanguage("ar")}>AR</MenuItem>
       </Menu>
     </Box>
   );

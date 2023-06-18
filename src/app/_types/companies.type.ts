@@ -1,3 +1,5 @@
+import { Page } from ".";
+
 export type Comapny = {
   id: string;
   name: string;
@@ -6,9 +8,4 @@ export type Comapny = {
   createdAt: string;
 };
 
-export type CompaniesResponse = {
-  data: {
-    totalRecords: number;
-    records: Array<Comapny>;
-  };
-};
+export type CompaniesResponse = Page<Comapny>;

@@ -1,3 +1,5 @@
+import { Page } from ".";
+
 export type News = {
   id: string;
   title: string;
@@ -5,9 +7,4 @@ export type News = {
   createdAt: string;
 };
 
-export type NewssResponse = {
-  data: {
-    totalRecords: number;
-    records: Array<News>;
-  };
-};
+export type NewssResponse = Page<News>;

@@ -1,3 +1,5 @@
+import { Page } from ".";
+
 export type Service = {
   id: string;
   title: string;
@@ -5,9 +7,4 @@ export type Service = {
   createdAt: string;
 };
 
-export type ServicesResponse = {
-  data: {
-    totalRecords: number;
-    records: Array<Service>;
-  };
-};
+export type ServicesResponse = Page<Service>;

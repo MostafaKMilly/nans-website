@@ -31,6 +31,7 @@ import Link from "./Link";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import API from "@/api/client";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useTranslations } from "../_hooks/useTranslations";
 
 const languages = [
   {
@@ -47,7 +48,7 @@ export const Header = () => {
   const { isAuthenticated } = useAuth();
   const router = useRouter();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const client = useQueryClient();
+  const { handleChangeLanguage, t } = useTranslations();
   const { data: departments } = useQuery(
     ["departments"],
     () => API.get<Response>("department"),
@@ -121,7 +122,7 @@ export const Header = () => {
                 href="about-us"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <Typography variant="body2">About us</Typography>
+                <Typography variant="body2">{t("ABOUT_US")}</Typography>
               </Link>
               <DepartmentsDropdown />
               <ServicesDropdown />
@@ -129,7 +130,9 @@ export const Header = () => {
                 href="laws-and-legislations"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <Typography variant="body2">Laws And Legislations</Typography>
+                <Typography variant="body2">
+                  {t("Laws_And_Legislations")}
+                </Typography>
               </Link>
               <Button
                 color="secondary"
@@ -142,7 +145,7 @@ export const Header = () => {
                   router.push("/login");
                 }}
               >
-                Login
+                {t("LOGIN")}
               </Button>
               <LanguageSelector />
             </Box>
@@ -203,7 +206,7 @@ export const Header = () => {
           <ListItemButton sx={{ justifyContent: "center" }}>
             <Link href="/about-us" sx={{ textDecoration: "none" }}>
               <ListItemText
-                primary="About us"
+                primary={t("ABOUT_US")}
                 primaryTypographyProps={{
                   variant: "h6",
                 }}
@@ -239,7 +242,7 @@ export const Header = () => {
                 },
               }}
             >
-              <Typography variant="h6">Departments</Typography>
+              <Typography variant="h6">{t("DEPARTMENTS")}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               {departments &&
@@ -290,7 +293,7 @@ export const Header = () => {
                 },
               }}
             >
-              <Typography variant="h6">Services</Typography>
+              <Typography variant="h6">{t("SERVICES")}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               {services &&
@@ -320,7 +323,7 @@ export const Header = () => {
           >
             <Link href="laws-and-legislations" sx={{ textDecoration: "none" }}>
               <ListItemText
-                primary="Laws and legislations"
+                primary={t("Laws_And_Legislations")}
                 primaryTypographyProps={{
                   variant: "h6",
                 }}
@@ -355,7 +358,7 @@ export const Header = () => {
                 },
               }}
             >
-              <Typography variant="h6">Languages</Typography>
+              <Typography variant="h6">{t("Languages")}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               {languages.map((language) => (
@@ -363,9 +366,7 @@ export const Header = () => {
                   key={language.value}
                   onClick={() => {
                     handleDrawerToggle();
-                    localStorage?.setItem("language", language.value);
-                    router.refresh();
-                    client.refetchQueries();
+                    handleChangeLanguage(language.value);
                   }}
                 >
                   <ListItemText
@@ -390,7 +391,7 @@ export const Header = () => {
                 handleDrawerToggle();
               }}
             >
-              Login
+              {t("LOGIN")}
             </Button>
           </Box>
         </List>

@@ -3,11 +3,13 @@ import { Button, Menu, MenuItem, Box, CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import API from "@/api/client";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const ServicesDropdown = () => {
   const anchorEl = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const { t } = useTranslations();
 
   const { data, isLoading } = useQuery(
     ["services"],
@@ -34,7 +36,7 @@ export const ServicesDropdown = () => {
         ref={anchorEl}
         sx={{ fontSize: "body2.fontSize", fontWeight: "body2.fontWeight" }}
       >
-        Services
+        {t("SERVICES")}
       </Button>
       <Menu
         id="hover-menu"
