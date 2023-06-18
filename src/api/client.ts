@@ -1,4 +1,10 @@
-import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from "axios";
+import axios, {
+  AxiosResponse,
+  AxiosRequestConfig,
+  AxiosError,
+  AxiosRequestHeaders,
+  RawAxiosRequestHeaders,
+} from "axios";
 import { enqueueSnackbar } from "notistack";
 
 const instance = axios.create({
@@ -15,11 +21,13 @@ instance.interceptors.request.use((config) => {
   const language = localStorage.getItem("language") || "en";
 
   const auth = token ? `Bearer ${token}` : "";
-  config.headers = {
-    ...config.headers,
-    authorization: auth,
-    language,
-  } as Record<string, any>;
+  if (config.headers) {
+    config.headers = {
+      ...config.headers,
+      authorization: auth,
+      language,
+    } as any;
+  }
 
   config.params = {
     ...config.params,
