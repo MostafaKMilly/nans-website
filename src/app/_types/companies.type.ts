@@ -1,11 +1,15 @@
 import { Page } from ".";
 
-export type Comapny = {
+export type Company = {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   image: string;
+  applications?: Array<{
+    name: string;
+    image: string;
+  }>;
   createdAt: string;
 };
 
-export type CompaniesResponse = Page<Comapny>;
+export type CompaniesResponse = Page<Company>;

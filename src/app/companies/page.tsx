@@ -14,28 +14,28 @@ import Image from "next/image";
 import { useTranslations } from "../_hooks/useTranslations";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import API from "@/api/client";
-import { NewssResponse } from "../_types/news.type";
-import { LatestNewsSection } from "./_components/LatestNewsSection";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { NewsItemCard } from "./_components/NewsItemCard";
+import { LatestCompanies } from "./_components/LatestCompanies";
+import { CompanyItemCard } from "./_components/CompanyItemCard";
+import { CompaniesResponse } from "../_types/companies.type";
 
-export default function NewsPage() {
+export default function CompaniesPage() {
   const { t } = useTranslations();
   const [search, setSearch] = useState("");
 
   const {
-    data: news,
-    isLoading: isNewsLoading,
+    data: companies,
+    isLoading: isCompaniesLoading,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ["News", search],
+    ["Companies", search],
     ({ pageParam = 0 }) =>
-      API.get<NewssResponse>("news", {
+      API.get<CompaniesResponse>("licencedCompany", {
         params: {
           sort: "createdAt",
-          limit: 2,
+          limit: 4,
           page: pageParam,
           ...(search && { search }),
         },
@@ -43,7 +43,7 @@ export default function NewsPage() {
     {
       getNextPageParam: (lastPage, allPages) => {
         const currentPage = allPages.length - 1;
-        if (currentPage * 2 < lastPage.data.totalRecords) {
+        if (currentPage * 4 < lastPage.data.totalRecords) {
           return currentPage + 1;
         }
         return undefined;
@@ -57,14 +57,17 @@ export default function NewsPage() {
 
   return (
     <Box>
-      <Paper elevation={0} sx={{ bgcolor: "#6D71D2", borderRadius: 0, py: 4 }}>
+      <Paper elevation={0} sx={{ bgcolor: "#FFD740", borderRadius: 0, py: 4 }}>
         <Container
           maxWidth="lg"
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
-            flexWrap: "wrap",
+            flexWrap: {
+              xs: "wrap",
+              md: "nowrap",
+            },
             overflowX: "hidden",
             rowGap: 2,
           }}
@@ -74,13 +77,13 @@ export default function NewsPage() {
               variant="h2"
               component="h1"
               gutterBottom
-              sx={{ color: "common.white", textAlign: "center" }}
+              sx={{ color: "common.black", textAlign: "center" }}
             >
-              {t("news.hero")}
+              {t("companies.hero")}
             </Typography>
           </Box>
           <Image
-            src="/images/news_hero.svg"
+            src="/images/companies.svg"
             alt="HeroImage"
             width={300}
             height={200}
@@ -90,7 +93,7 @@ export default function NewsPage() {
       <Container maxWidth={false} sx={{ my: 4, maxWidth: "1400px !important" }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6} lg={4}>
-            <LatestNewsSection />
+            <LatestCompanies />
           </Grid>
           <Grid item xs={12} md={6} lg={8}>
             <Box
@@ -114,7 +117,7 @@ export default function NewsPage() {
                   },
                 }}
               >
-                {t("all_news")}
+                {t("Liscenced_companies")}
               </Typography>
               <TextField
                 placeholder={`${t("search")} ...`}
@@ -133,10 +136,10 @@ export default function NewsPage() {
             </Box>
             <Box mt={2}>
               <Stack spacing={2}>
-                {news?.pages
-                  .flatMap((news) => news.data.records)
-                  .map((news) => (
-                    <NewsItemCard news={news} key={news.id} />
+                {companies?.pages
+                  .flatMap((companies) => companies.data.records)
+                  .map((company) => (
+                    <CompanyItemCard company={company} key={company.id} />
                   ))}
               </Stack>
             </Box>

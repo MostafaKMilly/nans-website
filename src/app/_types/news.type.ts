@@ -5,6 +5,7 @@ export type News = {
   title: string;
   image: string;
   createdAt: string;
+  description?: string;
 };
 
 export type NewssResponse = Page<News>;

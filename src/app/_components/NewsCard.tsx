@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Paper, Box, Typography, Button } from "@mui/material";
-import { News } from "../_types/news,type";
+import { News } from "../_types/news.type";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "../_hooks/useTranslations";
 export const NewsCard = ({ news }: { news: News }) => {

@@ -46,6 +46,13 @@ export const ProfileMenu = () => {
       >
         <MenuItem
           onClick={() => {
+            handleClose();
+          }}
+        >
+          {t("my_profile")}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
             logout();
             handleClose();
           }}

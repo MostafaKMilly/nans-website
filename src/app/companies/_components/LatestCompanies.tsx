@@ -1,21 +1,15 @@
 import API from "@/api/client";
-import { NewssResponse } from "@/app/_types/news.type";
+import { CompaniesResponse } from "@/app/_types/companies.type";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { Box, Typography, Stack, Paper, CircularProgress } from "@mui/material";
+import { Box, Typography, Stack, CircularProgress } from "@mui/material";
+import { CompanyItemCard } from "./CompanyItemCard";
 import { useTranslations } from "@/app/_hooks/useTranslations";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { NewsItemCard } from "./NewsItemCard";
 
-export const LatestNewsSection = () => {
-  const { t } = useTranslations();
-  const router = useRouter();
-
-  const { data: news, isLoading: isNewsLoading } = useQuery(
-    ["News"],
+export const LatestCompanies = () => {
+  const { data: companies, isLoading: isCompaniesLoading } = useQuery(
+    ["Companies"],
     () =>
-      API.get<NewssResponse>("news", {
+      API.get<CompaniesResponse>("licencedCompany", {
         params: {
           sort: "createdAt",
           limit: 4,
@@ -26,6 +20,7 @@ export const LatestNewsSection = () => {
       select: (res) => res.data,
     }
   );
+  const { t } = useTranslations();
 
   return (
     <Box width="100%">
@@ -44,14 +39,14 @@ export const LatestNewsSection = () => {
           },
         }}
       >
-        {t("latest_news")}
+        {t("latest_companies")}
       </Typography>
       <Stack spacing={2}>
-        {isNewsLoading ? (
+        {isCompaniesLoading ? (
           <CircularProgress />
         ) : (
-          news?.records?.map((news) => (
-            <NewsItemCard news={news} key={news.id} />
+          companies?.records?.map((company) => (
+            <CompanyItemCard company={company} key={company.id} />
           ))
         )}
       </Stack>

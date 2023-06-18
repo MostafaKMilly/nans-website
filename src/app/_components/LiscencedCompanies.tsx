@@ -83,7 +83,7 @@ export const LiscencedCompanies = () => {
         <Button
           variant="text"
           onClick={() => {
-            router.push("/news");
+            router.push("/companies");
           }}
         >
           {t("show_more")}

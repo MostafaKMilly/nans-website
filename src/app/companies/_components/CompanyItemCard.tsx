@@ -1,15 +1,14 @@
-import React from "react";
 import { Paper, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { News } from "@/app/_types/news.type";
 import { useRouter } from "next/navigation";
+import { Company } from "@/app/_types/companies.type";
 
-export const NewsItemCard = ({ news }: { news: News }) => {
+export const CompanyItemCard = ({ company }: { company: Company }) => {
   const router = useRouter();
 
   return (
     <Paper
-      key={news.id}
+      key={company.id}
       sx={{
         width: "100%",
         height: "fit-content",
@@ -19,24 +18,29 @@ export const NewsItemCard = ({ news }: { news: News }) => {
         alignItems: "center",
         cursor: "pointer",
       }}
-      onClick={() => router.push(`/news/${news.id}`)}
+      onClick={() => router.push(`/companies/${company.id}`)}
     >
       <Stack spacing={1} p={2}>
         <Typography variant="h6" sx={{ mb: 1 }}>
-          {news.title}
+          {company.name}
         </Typography>
         <Typography variant="body2" sx={{ mb: 1 }}>
-          {news.createdAt.split("T")[0]}
+          <div
+            dangerouslySetInnerHTML={{ __html: company.description as string }}
+          />
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 1 }}>
+          {company.createdAt.split("T")[0]}
         </Typography>
       </Stack>
       <Image
-        src={news.image}
+        src={company.image}
         width={200}
         height={200}
         style={{
           objectFit: "cover",
         }}
-        alt="NewsImage"
+        alt="companyImage"
       />
     </Paper>
   );

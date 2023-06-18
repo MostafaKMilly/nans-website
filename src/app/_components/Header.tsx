@@ -119,6 +119,12 @@ export const Header = () => {
               }}
             >
               <Link
+                href="/"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Typography variant="body2">{t("home")}</Typography>
+              </Link>
+              <Link
                 href="about-us"
                 style={{ textDecoration: "none", color: "inherit" }}
               >

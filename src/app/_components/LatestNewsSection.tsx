@@ -11,7 +11,7 @@ import {
   ButtonBase,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { NewssResponse } from "../_types/news,type";
+import { NewssResponse } from "../_types/news.type";
 import { NewsCard } from "./NewsCard";
 import { useTranslations } from "../_hooks/useTranslations";
 
