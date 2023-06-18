@@ -14,7 +14,16 @@ export const Footer = () => {
         mt: "auto",
       }}
     >
-      <Typography variant="body2" sx={{ color: "common.white" }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: "common.white",
+          fontSize: {
+            xs: 11,
+            md: 14,
+          },
+        }}
+      >
         All rights reserved . National Agency for Network Services{" "}
         {new Date().getFullYear()} ©
       </Typography>

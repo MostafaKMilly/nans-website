@@ -1,7 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { theme } from "@/theme/theme";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  Toolbar,
+} from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackbarProvider } from "notistack";
 import { useRouter } from "next/navigation";

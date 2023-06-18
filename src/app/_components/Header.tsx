@@ -69,7 +69,7 @@ export const Header = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ bgcolor: "white" }} elevation={0}>
+      <AppBar position="fixed" sx={{ bgcolor: "white" }} elevation={0}>
         <Container maxWidth="xl">
           <Toolbar variant="dense">
             <IconButton
@@ -133,7 +133,11 @@ export const Header = () => {
               </Link>
               <Button
                 color="secondary"
-                sx={{ px: 4, borderRadius: 5 }}
+                sx={{
+                  px: 4,
+                  borderRadius: 5,
+                  display: isAuthenticated ? "none" : "flex",
+                }}
                 onClick={() => {
                   router.push("/login");
                 }}
@@ -378,6 +382,9 @@ export const Header = () => {
             <Button
               fullWidth
               color="secondary"
+              sx={{
+                display: isAuthenticated ? "none" : "flex",
+              }}
               onClick={() => {
                 router.push("/login");
                 handleDrawerToggle();

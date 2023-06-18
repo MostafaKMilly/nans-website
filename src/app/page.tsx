@@ -1,10 +1,12 @@
 "use client";
 import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
+import { ServicesSection } from "./_components/ServicesSection";
+import { LatestNewsSection } from "./_components/LatestNewsSection";
 
 export default function Home() {
   return (
-    <Box width="100%">
+    <Box width="100%" sx={{ overflowX: "hidden" }}>
       <Box
         py={{
           xs: 4,
@@ -18,6 +20,7 @@ export default function Home() {
             alignItems: "center",
             justifyContent: "space-around",
             flexWrap: "wrap",
+            overflowX: "hidden",
           }}
         >
           <Box>
@@ -45,6 +48,8 @@ export default function Home() {
           />
         </Container>
       </Box>
+      <ServicesSection />
+      <LatestNewsSection />
     </Box>
   );
 }
