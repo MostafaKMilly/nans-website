@@ -8,7 +8,9 @@ function AboutUsPage() {
 
   return (
     <Container maxWidth="xl" sx={{ pb: 3 }}>
-      <Typography variant="h2">{t("ABOUT_US")}</Typography>
+      <Typography variant="h2" gutterBottom>
+        {t("ABOUT_US")}
+      </Typography>
       <Box
         display="flex"
         alignItems="center"

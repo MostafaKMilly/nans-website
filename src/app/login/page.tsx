@@ -12,7 +12,6 @@ import Container from "@mui/material/Container";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
-import { useRouter } from "next/navigation";
 import { useAuth } from "../_hooks/useAuth";
 import Link from "../_components/Link";
 import { useTranslations } from "../_hooks/useTranslations";
@@ -31,7 +30,6 @@ export default function LoginPage() {
     {
       email: string;
       password: string;
-      fcmToken: string;
     }
   >((data) =>
     axios.post(process.env.NEXT_PUBLIC_API_URL + "/user/auth/login", data)
@@ -40,7 +38,6 @@ export default function LoginPage() {
     mutate(
       {
         ...data,
-        fcmToken: "asdsd",
       },
       {
         onSuccess: (res) => {
