@@ -2,11 +2,13 @@ import { useRef, useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import { useAuth } from "../_hooks/useAuth";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const ProfileMenu = () => {
   const anchorEl = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
   const { logout } = useAuth();
+  const { t } = useTranslations();
 
   const handleClick = () => {
     setOpen(true);
@@ -48,7 +50,7 @@ export const ProfileMenu = () => {
             handleClose();
           }}
         >
-          Logout
+          {t("logout")}
         </MenuItem>
       </Menu>
     </>

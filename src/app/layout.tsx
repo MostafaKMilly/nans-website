@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={openSans.className}>
         <Providers>
           <Header />
-          <div style={{ marginTop: 82 }} />
+          <div style={{ marginTop: 67 }} />
           {children}
           <Footer />
         </Providers>

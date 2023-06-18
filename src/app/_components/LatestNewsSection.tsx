@@ -68,7 +68,7 @@ export const LatestNewsSection = () => {
           <CircularProgress sx={{ mt: 2 }} />
         )}
       </Grid>
-      <Box width="100%" textAlign="right" mt={2}>
+      <Box width="100%" textAlign="left" mt={2}>
         <Button
           variant="text"
           onClick={() => {
