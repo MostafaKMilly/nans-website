@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ServicesSection } from "./_components/ServicesSection";
 import { LatestNewsSection } from "./_components/LatestNewsSection";
 import { NewsLetterSubscription } from "./_components/NewsLetterSubscription";
+import { LiscencedCompanies } from "./_components/LiscencedCompanies";
 
 export default function Home() {
   return (
@@ -52,6 +53,7 @@ export default function Home() {
       <ServicesSection />
       <LatestNewsSection />
       <NewsLetterSubscription />
+      <LiscencedCompanies />
     </Box>
   );
 }
