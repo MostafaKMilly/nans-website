@@ -3,10 +3,11 @@ import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import { ServicesSection } from "./_components/ServicesSection";
 import { LatestNewsSection } from "./_components/LatestNewsSection";
+import { NewsLetterSubscription } from "./_components/NewsLetterSubscription";
 
 export default function Home() {
   return (
-    <Box width="100%" sx={{ overflowX: "hidden" }}>
+    <Box width="100%">
       <Box
         py={{
           xs: 4,
@@ -50,6 +51,7 @@ export default function Home() {
       </Box>
       <ServicesSection />
       <LatestNewsSection />
+      <NewsLetterSubscription />
     </Box>
   );
 }
