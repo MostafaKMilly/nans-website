@@ -65,7 +65,13 @@ export const Header = () => {
             >
               <Typography variant="body2">Laws And Legislations</Typography>
             </Link>
-            <Button color="secondary" sx={{ px: 4, borderRadius: 5 }}>
+            <Button
+              color="secondary"
+              sx={{ px: 4, borderRadius: 5 }}
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
               Login
             </Button>
           </Box>

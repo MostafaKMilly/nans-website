@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from "axios";
 import { enqueueSnackbar } from "notistack";
 
 const instance = axios.create({
-  baseURL: "https://nans-backend-container.azurewebsites.net/api/v1/website",
+  baseURL: process.env.NEXT_PUBLIC_API_URL + "/website",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
@@ -68,6 +68,14 @@ const put = <T = AxiosResponse["data"]>(
   return instance.put(url, data, config).then((res) => res.data);
 };
 
+const patch = <T = AxiosResponse["data"]>(
+  url: string,
+  data: Record<string, any>,
+  config?: AxiosRequestConfig
+): Promise<T> => {
+  return instance.patch(url, data, config).then((res) => res.data);
+};
+
 const remove = <T = AxiosResponse["data"]>(
   url: string,
   config?: AxiosRequestConfig
@@ -80,6 +88,7 @@ const API = {
   post,
   put,
   remove,
+  patch,
 };
 
 export default API;

@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useAuth } from "../_hooks/useAuth";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
@@ -8,7 +7,6 @@ export const ProfileMenu = () => {
   const anchorEl = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
   const { logout } = useAuth();
-  const router = useRouter();
 
   const handleClick = () => {
     setOpen(true);

@@ -26,17 +26,20 @@ export const AuthContext = React.createContext<{
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
+
   const login = (token = "") => {
     setIsAuthenticated(true);
     localStorage.setItem("token", token);
+    router.push("/");
   };
-  const router = useRouter();
 
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("token");
     queryClient.clear();
     router.refresh();
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -56,7 +59,19 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <CssBaseline />
       <QueryClientProvider client={queryClient}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-          <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+          <AuthContext.Provider value={value}>
+            {
+              <main
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                }}
+              >
+                {children}
+              </main>
+            }
+          </AuthContext.Provider>
         </SnackbarProvider>
       </QueryClientProvider>
     </ThemeProvider>
