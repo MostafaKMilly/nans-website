@@ -1,7 +1,10 @@
 "use client";
 import { Box, Typography } from "@mui/material";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const Footer = () => {
+  const { t } = useTranslations();
+
   return (
     <Box
       width="100%"
@@ -24,8 +27,7 @@ export const Footer = () => {
           },
         }}
       >
-        All rights reserved . National Agency for Network Services{" "}
-        {new Date().getFullYear()} ©
+        {t("copyright") + " "} {new Date().getFullYear()} ©
       </Typography>
     </Box>
   );

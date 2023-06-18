@@ -17,7 +17,7 @@ export const TrnaslationContext = React.createContext<{
   handleChangeLanguage: (language: string) => void;
 }>({
   translations: {},
-  t: () => [],
+  t: () => "",
   language: "",
   handleChangeLanguage: () => {},
 });

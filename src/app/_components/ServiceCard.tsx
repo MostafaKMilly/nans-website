@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { Service } from "../_types/service.type";
 import { Paper, Box, Typography, Button } from "@mui/material";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const ServiceCard = ({ service }: { service: Service }) => {
+  const { t } = useTranslations();
+
   return (
     <Paper
       sx={{
@@ -24,7 +27,7 @@ export const ServiceCard = ({ service }: { service: Service }) => {
       />
       <Box mt={1} sx={{ textAlign: "center" }}>
         <Typography variant="h4">{service.title}</Typography>
-        <Button sx={{ borderRadius: "50px", mt: 2 }}>Show more</Button>
+        <Button sx={{ borderRadius: "50px", mt: 2 }}>{t("show_more")}</Button>
       </Box>
     </Paper>
   );

@@ -13,9 +13,11 @@ import {
 import { useRouter } from "next/navigation";
 import { NewssResponse } from "../_types/news,type";
 import { NewsCard } from "./NewsCard";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const LatestNewsSection = () => {
   const router = useRouter();
+  const { t } = useTranslations();
 
   const { data: news, isLoading: isNewsLoading } = useQuery(
     ["News"],
@@ -45,7 +47,7 @@ export const LatestNewsSection = () => {
       elevation={0}
     >
       <Typography variant="h3" sx={{ color: "common.black", mb: 2 }}>
-        Latest news
+        {t("latest_news")}
       </Typography>
       <Grid container spacing={2} justifyContent="space-around">
         {!isNewsLoading ? (
@@ -73,7 +75,7 @@ export const LatestNewsSection = () => {
             router.push("/news");
           }}
         >
-          Show more
+          {t("show_more")}
         </Button>
       </Box>
     </Paper>

@@ -10,9 +10,11 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { CompaniesResponse } from "../_types/companies.type";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const LiscencedCompanies = () => {
   const router = useRouter();
+  const { t } = useTranslations();
 
   const { data: companies, isLoading: isCompaniesLoading } = useQuery(
     ["Companies"],
@@ -42,7 +44,7 @@ export const LiscencedCompanies = () => {
       elevation={0}
     >
       <Typography variant="h3" sx={{ color: "common.black", mb: 2 }}>
-        Liscenced companies
+        {t("Liscenced_companies")}
       </Typography>
       <Grid container spacing={2} justifyContent="space-around">
         {!isCompaniesLoading ? (
@@ -84,7 +86,7 @@ export const LiscencedCompanies = () => {
             router.push("/news");
           }}
         >
-          Show more
+          {t("show_more")}
         </Button>
       </Box>
     </Paper>

@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 import { ServiceCard } from "./ServiceCard";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const ServicesSection = () => {
   const router = useRouter();
-
   const { data: services, isLoading: isServicesLoading } = useQuery(
     ["services"],
     () => API.get<ServicesResponse>("service"),
@@ -22,6 +22,7 @@ export const ServicesSection = () => {
       select: (res) => res.data,
     }
   );
+  const { t } = useTranslations();
 
   return (
     <Paper
@@ -37,7 +38,7 @@ export const ServicesSection = () => {
       elevation={0}
     >
       <Typography variant="h3" sx={{ color: "common.black", mb: 2 }}>
-        Our services
+        {t("our_services")}
       </Typography>
       <Grid container spacing={2} justifyContent="space-around">
         {!isServicesLoading ? (
@@ -58,14 +59,14 @@ export const ServicesSection = () => {
           <CircularProgress sx={{ mt: 2 }} />
         )}
       </Grid>
-      <Box width="100%" textAlign="right" mt={2}>
+      <Box width="100%" textAlign="left" mt={2}>
         <Button
           variant="text"
           onClick={() => {
             router.push("/services");
           }}
         >
-          Show more
+          {t("show_more")}
         </Button>
       </Box>
     </Paper>

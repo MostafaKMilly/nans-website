@@ -2,8 +2,10 @@ import Image from "next/image";
 import { Paper, Box, Typography, Button } from "@mui/material";
 import { News } from "../_types/news,type";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "../_hooks/useTranslations";
 export const NewsCard = ({ news }: { news: News }) => {
   const router = useRouter();
+  const { t } = useTranslations();
 
   return (
     <Paper
@@ -38,7 +40,7 @@ export const NewsCard = ({ news }: { news: News }) => {
             router.push(`/news/${news.id}`);
           }}
         >
-          Explore more
+          {t("show_more")}
         </Button>
       </Box>
     </Paper>

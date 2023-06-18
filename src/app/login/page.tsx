@@ -15,9 +15,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../_hooks/useAuth";
 import Link from "../_components/Link";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const { t } = useTranslations();
   const {
     handleSubmit,
     register,
@@ -63,7 +64,7 @@ export default function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {t("LOGIN")}
         </Typography>
         <Box
           component="form"
@@ -76,7 +77,7 @@ export default function LoginPage() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label={t("Email_Address")}
             autoComplete="email"
             autoFocus
             {...register("email", {
@@ -93,7 +94,7 @@ export default function LoginPage() {
             margin="normal"
             required
             fullWidth
-            label="Password"
+            label={t("password")}
             type="password"
             id="password"
             autoComplete="current-password"
@@ -103,7 +104,7 @@ export default function LoginPage() {
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label={t("remember_me")}
           />
           <Button
             type="submit"
@@ -111,17 +112,17 @@ export default function LoginPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            {t("LOGIN")}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+                {t("forgot_password")}
               </Link>
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {t("signup_message")}
               </Link>
             </Grid>
           </Grid>

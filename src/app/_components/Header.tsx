@@ -196,7 +196,7 @@ export const Header = () => {
           >
             <Link href="/" sx={{ textDecoration: "none" }}>
               <ListItemText
-                primary="Home"
+                primary={t("home")}
                 primaryTypographyProps={{
                   variant: "h6",
                 }}

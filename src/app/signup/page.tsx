@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import API from "@/api/client";
 import { useRouter } from "next/navigation";
 import Link from "../_components/Link";
+import { useTranslations } from "../_hooks/useTranslations";
 
 type SignupFormData = {
   email: string;
@@ -34,6 +35,7 @@ export default function SignupPage() {
     formState: { errors },
   } = useForm<SignupFormData>();
   const router = useRouter();
+  const { t } = useTranslations();
 
   const { mutate } = useMutation<{ id: string }, unknown, SignupFormData>(
     (data) => API.post("user", data)
@@ -64,7 +66,7 @@ export default function SignupPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          {t("signup")}
         </Typography>
         <Box
           component="form"
@@ -77,7 +79,7 @@ export default function SignupPage() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label={t("Email_Address")}
             autoComplete="email"
             autoFocus
             {...register("email", {
@@ -94,7 +96,7 @@ export default function SignupPage() {
             margin="normal"
             required
             fullWidth
-            label="Name"
+            label={t("name")}
             type="text"
             id="name"
             {...register("name", { required: "Name is required" })}
@@ -106,7 +108,7 @@ export default function SignupPage() {
               margin="normal"
               required
               fullWidth
-              label="Father's Name"
+              label={t("father_name")}
               type="text"
               id="fatherName"
               {...register("fatherName", {
@@ -119,7 +121,7 @@ export default function SignupPage() {
               margin="normal"
               required
               fullWidth
-              label="Mother's Name"
+              label={t("mother_name")}
               type="text"
               id="motherName"
               {...register("motherName", {
@@ -136,14 +138,14 @@ export default function SignupPage() {
               margin="normal"
               error={!!errors.gender}
             >
-              <InputLabel>Gender</InputLabel>
+              <InputLabel>{t("gender")}</InputLabel>
               <Select
                 id="gender"
                 {...register("gender", { required: "Gender is required" })}
-                label="Gender"
+                label={t("gender")}
               >
-                <MenuItem value="MALE">Male</MenuItem>
-                <MenuItem value="FEMALE">Female</MenuItem>
+                <MenuItem value="MALE">{t("male")}</MenuItem>
+                <MenuItem value="FEMALE">{t("female")}</MenuItem>
               </Select>
               {errors.gender && (
                 <Typography variant="body2" color="error">
@@ -155,7 +157,7 @@ export default function SignupPage() {
               margin="normal"
               required
               fullWidth
-              label="Phone Number"
+              label={t("phone_number")}
               type="text"
               id="phoneNumber"
               {...register("phoneNumber", {
@@ -169,7 +171,7 @@ export default function SignupPage() {
             margin="normal"
             required
             fullWidth
-            label="Password"
+            label={t("password")}
             type="password"
             id="password"
             autoComplete="current-password"
@@ -179,7 +181,7 @@ export default function SignupPage() {
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label={t("remember_me")}
           />
           <Button
             type="submit"
@@ -187,17 +189,17 @@ export default function SignupPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            {t("signup")}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+                {t("forgot_password")}
               </Link>
             </Grid>
             <Grid item>
               <Link href="/login" variant="body2">
-                {"Already have an account? Sign In"}
+                {t("login.message")}
               </Link>
             </Grid>
           </Grid>

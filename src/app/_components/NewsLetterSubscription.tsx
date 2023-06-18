@@ -10,9 +10,11 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
+import { useTranslations } from "../_hooks/useTranslations";
 
 export const NewsLetterSubscription = () => {
   const [email, setEmail] = useState("");
+  const { t } = useTranslations();
 
   const { mutate } = useMutation<unknown, unknown, { email: string }>(
     () =>
@@ -57,7 +59,7 @@ export const NewsLetterSubscription = () => {
             },
           }}
         >
-          Subscribe to our Newsletter
+          {t("Subscribe_to_our_Newsletter")}
         </Typography>
         <Typography
           variant="h6"
@@ -71,7 +73,7 @@ export const NewsLetterSubscription = () => {
             color: "common.white",
           }}
         >
-          Keep up to date with our latest news and services.
+          {t("newsletter.subtitle")}
         </Typography>
         <Box
           component="form"
@@ -92,7 +94,7 @@ export const NewsLetterSubscription = () => {
             id="email"
             size="small"
             fullWidth
-            placeholder="Enter your email"
+            placeholder={t("enter_email")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             sx={{
@@ -118,7 +120,7 @@ export const NewsLetterSubscription = () => {
               );
             }}
           >
-            Subscribe
+            {t("subscribe")}
           </Button>
         </Box>
       </Container>

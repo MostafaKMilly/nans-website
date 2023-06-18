@@ -30,22 +30,24 @@ export const LanguageSelector = () => {
       >
         {language === "en" ? (
           <Image
-            src="https://flagcdn.com/w160/gb.png"
+            src="https://flagcdn.com/gb.svg"
             alt="EN"
             width={30}
             height={30}
             style={{
               borderRadius: "50%",
+              objectFit: "cover",
             }}
           />
         ) : (
           <Image
-            src="https://flagcdn.com/w160/sa.png"
+            src="https://flagcdn.com/sy.svg"
             alt="AR"
             width={30}
             height={30}
             style={{
               borderRadius: "50%",
+              objectFit: "cover",
             }}
           />
         )}

@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import API from "@/api/client";
 import { enqueueSnackbar } from "notistack";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import { useTranslations } from "../_hooks/useTranslations";
 
 type CodeValidationForm = {
   code: string;
@@ -27,9 +28,9 @@ export default function CodeValidationPage() {
     formState: { errors },
   } = useForm<CodeValidationForm>();
   const searchParams = useSearchParams();
-  const userId = searchParams.get("id");
   const email = searchParams.get("email") as string;
   const router = useRouter();
+  const { t } = useTranslations();
 
   const { mutate: regenerateCode } = useMutation<
     unknown,
@@ -92,7 +93,7 @@ export default function CodeValidationPage() {
             router.push("/login");
           }}
         >
-          Login
+          {t("LOGIN")}
         </Button>
       </Box>
       <Box
@@ -107,7 +108,7 @@ export default function CodeValidationPage() {
           <CheckCircleOutlineOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Code validation
+          {t("code_validation")}
         </Typography>
         <Box
           component="form"
@@ -116,7 +117,7 @@ export default function CodeValidationPage() {
           sx={{ mt: 1, width: "100%" }}
         >
           <TextField
-            label="Code"
+            label={t("code")}
             variant="outlined"
             margin="normal"
             fullWidth
@@ -136,10 +137,10 @@ export default function CodeValidationPage() {
               variant="text"
               sx={{ textAlign: "left" }}
             >
-              Did not receive a code! resend a new code
+              {t("dont_recieve_code_message")}
             </Button>
             <Button type="submit" variant="contained" color="primary" fullWidth>
-              Validate Code
+              {t("Validate_Code")}
             </Button>
           </Box>
         </Box>
