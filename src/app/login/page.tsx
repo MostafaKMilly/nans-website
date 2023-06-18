@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../_hooks/useAuth";
 import Link from "../_components/Link";
@@ -26,7 +26,7 @@ export default function LoginPage() {
   } = useForm<{ email: string; password: string }>();
   const { login } = useAuth();
   const { mutate } = useMutation<
-    { data: { accessToken: string } },
+    AxiosResponse<{ data: { accessToken: string } }>,
     unknown,
     {
       email: string;
@@ -44,7 +44,7 @@ export default function LoginPage() {
       },
       {
         onSuccess: (res) => {
-          login(res.data.accessToken);
+          login(res.data.data.accessToken);
         },
       }
     );
