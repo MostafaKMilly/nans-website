@@ -97,6 +97,7 @@ export default function NewsPage() {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
+              flexWrap="wrap"
             >
               <Typography
                 variant="h5"

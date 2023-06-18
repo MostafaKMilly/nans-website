@@ -26,7 +26,7 @@ export const NewsItemCard = ({ news }: { news: News }) => {
           {news.title}
         </Typography>
         <Typography variant="body2" sx={{ mb: 1 }}>
-          {news.createdAt}
+          {news.createdAt.split("T")[0]}
         </Typography>
       </Stack>
       <Image
