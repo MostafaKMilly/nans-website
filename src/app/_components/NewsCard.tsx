@@ -32,7 +32,17 @@ export const NewsCard = ({ news }: { news: News }) => {
         alt="newsImage"
       />
       <Box mt={1} sx={{ textAlign: "center" }}>
-        <Typography variant="h4">{news.title}</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            width: "200px",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {news.title}
+        </Typography>
         <Button
           sx={{ borderRadius: "50px", mt: 2 }}
           color="secondary"
