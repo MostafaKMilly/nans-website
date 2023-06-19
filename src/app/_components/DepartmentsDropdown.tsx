@@ -35,6 +35,9 @@ export const DepartmentsDropdown = () => {
         onMouseLeave={handleClose}
         ref={anchorEl}
         sx={{ fontSize: "body2.fontSize", fontWeight: "body2.fontWeight" }}
+        onClick={() => {
+          router.push("/departments");
+        }}
       >
         {t("DEPARTMENTS")}
       </Button>
