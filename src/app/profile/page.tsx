@@ -18,6 +18,7 @@ import Edit from "@mui/icons-material/Edit";
 import { useTranslations } from "../_hooks/useTranslations";
 import { useForm } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
+import { UpdateUserPassword } from "./_components/UpdateUserPassword";
 
 export default function ProfilePage() {
   const [previewIamge, setPreviewImage] = useState<string>();
@@ -27,7 +28,15 @@ export default function ProfilePage() {
     setValue,
 
     formState: { errors },
-  } = useForm<Partial<User>>();
+  } = useForm<Partial<User>>({
+    defaultValues: {
+      name: "",
+      email: "",
+      fatherName: "",
+      motherName: "",
+      phoneNumber: "",
+    },
+  });
   const { data: user, isLoading } = useQuery(
     ["Profile"],
     () => API.get<{ data: User }>("/user/profile"),
@@ -230,6 +239,7 @@ export default function ProfilePage() {
             {t("update_profile")}
           </Button>
         </Box>
+        <UpdateUserPassword />
       </Container>
     </Box>
   );

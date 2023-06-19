@@ -56,6 +56,14 @@ export const ProfileMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
+            handleClose();
+            router.push("/update-requests");
+          }}
+        >
+          {t("update_request")}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
             logout();
             handleClose();
           }}
