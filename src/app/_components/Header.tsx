@@ -133,12 +133,10 @@ export const Header = () => {
               <DepartmentsDropdown />
               <ServicesDropdown />
               <Link
-                href="laws-and-legislations"
+                href="faq"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <Typography variant="body2">
-                  {t("Laws_And_Legislations")}
-                </Typography>
+                <Typography variant="body2">{t("faq")}</Typography>
               </Link>
               <Button
                 color="secondary"
@@ -327,9 +325,9 @@ export const Header = () => {
               handleDrawerToggle();
             }}
           >
-            <Link href="laws-and-legislations" sx={{ textDecoration: "none" }}>
+            <Link href="faq" sx={{ textDecoration: "none" }}>
               <ListItemText
-                primary={t("Laws_And_Legislations")}
+                primary={t("faq")}
                 primaryTypographyProps={{
                   variant: "h6",
                 }}

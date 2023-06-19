@@ -61,7 +61,7 @@ export const LiscencedCompanies = () => {
               <Box display="flex" alignItems="center" flexDirection="column">
                 <Box
                   component="img"
-                  src={"/images/company.png"}
+                  src={comapny.image}
                   sx={{
                     width: 200,
                     height: 200,

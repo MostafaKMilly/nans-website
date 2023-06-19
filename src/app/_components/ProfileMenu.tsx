@@ -57,6 +57,14 @@ export const ProfileMenu = () => {
         <MenuItem
           onClick={() => {
             handleClose();
+            router.push("/client-requests");
+          }}
+        >
+          {t("client_request")}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
             router.push("/update-requests");
           }}
         >
