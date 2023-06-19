@@ -4,6 +4,8 @@ import { Button, TextField, Stack, Typography } from "@mui/material";
 import { useTranslations } from "@/app/_hooks/useTranslations";
 import { useMutation } from "@tanstack/react-query";
 import API from "@/api/client";
+import { enqueueSnackbar } from "notistack";
+import { useAuth } from "@/app/_hooks/useAuth";
 
 export const ServiceForm = ({
   serviceForm,
@@ -12,19 +14,47 @@ export const ServiceForm = ({
   serviceForm: Service["serviceForm"];
   id?: string;
 }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { t } = useTranslations();
   const { mutate } = useMutation<
     unknown,
     unknown,
     {
-      id?: string;
+      service?: string;
       userRequest?: Record<string, any>;
     }
   >((params) => API.post("/cRequest", params));
+  const { isAuthenticated } = useAuth();
 
   const onSubmit = (data: Record<string, any>) => {
-    console.log(data); // Handle the form submission here
+    if (!isAuthenticated) {
+      enqueueSnackbar("You should login to send the request", {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+      });
+      return;
+    }
+    mutate(
+      {
+        service: id,
+        userRequest: data,
+      },
+      {
+        onSuccess: () => {
+          enqueueSnackbar("You have successfully submitted the request!", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "center",
+            },
+          });
+          reset();
+        },
+      }
+    );
   };
 
   return (
