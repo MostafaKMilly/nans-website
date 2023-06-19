@@ -35,6 +35,9 @@ export const ServicesDropdown = () => {
         onMouseLeave={handleClose}
         ref={anchorEl}
         sx={{ fontSize: "body2.fontSize", fontWeight: "body2.fontWeight" }}
+        onClick={() => {
+          router.push("/services");
+        }}
       >
         {t("SERVICES")}
       </Button>

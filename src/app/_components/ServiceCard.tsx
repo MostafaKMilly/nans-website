@@ -2,9 +2,11 @@ import Image from "next/image";
 import { Service } from "../_types/service.type";
 import { Paper, Box, Typography, Button } from "@mui/material";
 import { useTranslations } from "../_hooks/useTranslations";
+import { useRouter } from "next/navigation";
 
 export const ServiceCard = ({ service }: { service: Service }) => {
   const { t } = useTranslations();
+  const router = useRouter();
 
   return (
     <Paper
@@ -27,7 +29,12 @@ export const ServiceCard = ({ service }: { service: Service }) => {
       />
       <Box mt={1} sx={{ textAlign: "center" }}>
         <Typography variant="h4">{service.title}</Typography>
-        <Button sx={{ borderRadius: "50px", mt: 2 }}>{t("show_more")}</Button>
+        <Button
+          sx={{ borderRadius: "50px", mt: 2 }}
+          onClick={() => router.push("/services/" + service.id)}
+        >
+          {t("show_more")}
+        </Button>
       </Box>
     </Paper>
   );

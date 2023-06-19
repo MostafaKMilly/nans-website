@@ -3,9 +3,10 @@ import API from "@/api/client";
 import { useQuery } from "@tanstack/react-query";
 import { ServicesResponse } from "../_types/service.type";
 import { Loader } from "../_components/Loader";
-import { Box, Paper, Container, Typography } from "@mui/material";
+import { Box, Paper, Container, Typography, Stack } from "@mui/material";
 import Image from "next/image";
 import { useTranslations } from "../_hooks/useTranslations";
+import { ServiceCard } from "../_components/ServiceCard";
 
 export default function ServicesPage() {
   const { data: services, isLoading: isServicesLoading } = useQuery(
@@ -56,10 +57,16 @@ export default function ServicesPage() {
           />
         </Container>
       </Paper>
-      <Container
-        maxWidth={false}
-        sx={{ my: 4, maxWidth: "1400px !important" }}
-      ></Container>
+      <Container maxWidth="xl" sx={{ my: 4 }}>
+        <Typography align="center" variant="h4">
+          {t("SERVICES")}
+        </Typography>
+        <Stack gap={4} direction="row" flexWrap="wrap" justifyContent="center">
+          {services?.records.map((service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
+        </Stack>
+      </Container>
     </Box>
   );
 }
